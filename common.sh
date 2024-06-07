@@ -9,8 +9,6 @@ R="\e[31m" #for red color
 G="\e[32m" #for green color
 Y="\e[33m"
 N="\e[0m" #for normal color
-echo "Please enter db password: "
-read -s mysql_root_password
 
 VALIDATE(){
     if [ $1 -ne 0 ]
