@@ -4,7 +4,8 @@ set -e
 handle_error(){
     echo "Error occured at line no : $1, error command : $2"
 }
-trap 'handle_error ${LINENO} "BASH_COMMAND"' ERR
+
+trap 'handle_error ${LINENO} "$BASH_COMMAND"' ERR
 #Here ERR will finds an error
 #trap will catch the error
 #handle_error is a function which is used to find the error line and error command
