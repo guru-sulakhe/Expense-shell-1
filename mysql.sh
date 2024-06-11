@@ -6,10 +6,10 @@ check_root
 echo "Please enter DB password"
 read -s mysql_root_pass
 
-dnf install mysql-server -y &>>$LOGFILE
+dnf install mysql-serverdd -y &>>$LOGFILE
 #VALIDATE $? "Installing mysql"
 
-systemctl enable mysqldee &>>$LOGFILE
+systemctl enable mysqld &>>$LOGFILE
 #VALIDATE $? "Enabling mysql"
 
 systemctl start mysqld &>>$LOGFILE
