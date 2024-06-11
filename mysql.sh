@@ -7,13 +7,13 @@ echo "Please enter DB password"
 read -s mysql_root_pass
 
 dnf install mysql-server -y &>>$LOGFILE
-VALIDATE $? "Installing mysql"
+#VALIDATE $? "Installing mysql"
 
-systemctl enable mysqld &>>$LOGFILE
-VALIDATE $? "Enabling mysql"
+systemctl enable mysqldee &>>$LOGFILE
+#VALIDATE $? "Enabling mysql"
 
 systemctl start mysqld &>>$LOGFILE
-VALIDATE $? "Starting mysql"
+#VALIDATE $? "Starting mysql"
 
 #mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 #VALIDATE $? "Setting root password"
@@ -24,7 +24,7 @@ mysql -h db.guru97s.cloud -uroot -p${mysql_root_pass} -e 'show databases;' &>>$L
 if [ $? -ne 0 ] #if exit status is 1 then we need to setup a new password,if it is 0 then password is already setup
 then
     mysql_secure_installation --set-root-pass ${mysql_root_pass} &>>$LOGFILE
-    VALIDATE $? "Setting root password"
+    #VALIDATE $? "Setting root password"
 else
     echo -e "Root Password is already setup.. $Y SKPPING $N"
 fi
