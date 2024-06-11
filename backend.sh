@@ -22,6 +22,7 @@ dnf install nodejs -y &>>$LOGFILE
 #use the below code for idempotent nature in script
 
 id expense &>>$LOGFILE # this is used for checking whether the expense user is created or not,and analysing the exit status
+##id expense will throw an error while executing the script, to handle this error we should create user expense manually at the execution time
 if [ $? -ne 0 ] #if the exit status is 1,then we need create expense user,if the exit status is 0 then expense user is already created skipping
 then
     useradd expense &>>$LOGFILE
@@ -44,7 +45,7 @@ unzip /tmp/backend.zip &>>$LOGFILE
 npm install &>>$LOGFILE
 #VALIDATE $? "installing nodejs dependencies"
 
-cp /home/ec2-user/Expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE # copying the backend.service from home direct to etc direct because shell can't able to handle VIM services
+cp /home/ec2-user/Expense-shell-1/backend.service /etc/systemd/system/backend.service &>>$LOGFILE # copying the backend.service from home direct to etc direct because shell can't able to handle VIM services
 #VALIDATE $? "Copying backend service"
 
 systemctl daemon-reload &>>$LOGFILE
